@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Schedule</title>
+
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.6.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.6.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+	<div id="page">
+		<form action="/" method="post">
+
+			{% csrf_token %}
+			<p>
+				I have a student loan. <br>The balance is 
+				{{ form.amt }}.<br>
+				The annual interest rate is 
+				{{ form.r }}.<br>
+				My monthly payment is $
+				{{ form.pmt }}.
+			</p><br>
+
+			<input type="submit" value="When will I be free?" class="button" />
+
+		</form>
+	</div>
+
+</body>
+</html> 

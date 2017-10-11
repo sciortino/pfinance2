@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Schedule</title>
+
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+	<div id="page">
+	<div class="row">
+	<div class="col-xs-5">
+
+	<form action="/report" method="post">
+
+		<input type="hidden" name="r" value="0.01" />
+
+		{% csrf_token %}
+		<p>
+			You owe
+			{{ form.amt }}.
+			<br>
+			If you pay
+			{{ form.pmt }} 
+			each month for the next 
+			{{ form.per }} 
+			months, you will finish paying on  
+			{{ d_tail.Month }}.
+
+		</p><br>
+
+		<p>You can change any of the variables above and recalculate.
+		{{ form.calc_type }}
+
+		</p>
+		
+		<input type="submit" value="Recalculate" class="button" />
+
+	</form>
+
+	</div>
+
+
+	<div class="col-xs-7">
+	    {{ the_div|safe }}
+	    {{ the_script|safe }}
+    </div>
+
+    </div>
+</body>
+</html> 
